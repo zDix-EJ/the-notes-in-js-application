@@ -1,3 +1,5 @@
+let notesArr = []
+
 // Панель создания заметки
 let boxInput = document.createElement('div')
 boxInput.classList.add('new-card-panel')
@@ -9,15 +11,15 @@ let titlePanel = document.createElement('h1')
 titlePanel.textContent = 'Новая заметка'
 titlePanel.classList.add('title-panel')
 
-let inputImg = document.createElement('input')
-inputImg.placeholder = 'Вставьте ссылку на понравившуюся картинку'
-inputImg.type = 'url'
-inputImg.classList.add('input-panel')
-
 let inputTitle = document.createElement('input')
 inputTitle.placeholder = 'Тема'
 inputTitle.type = 'text'
 inputTitle.classList.add('input-panel')
+
+let inputImg = document.createElement('input')
+inputImg.placeholder = 'Вставьте ссылку на понравившуюся картинку'
+inputImg.type = 'url'
+inputImg.classList.add('input-panel')
 
 let inputDesc = document.createElement('textarea')
 inputDesc.placeholder = 'Ваш текст...'
@@ -40,8 +42,26 @@ function getAddBtn(text) {
 }
 
 let addBtn = getAddBtn('Добавить заметку')
+addBtn.onclick = function () {
+	let titleValue = inputTitle.value
+	let impValue = inputImg.value
+	let descValue = inputDesc.value
 
-inputWrapper.append(titlePanel, inputImg, inputTitle, inputDesc, addBtn)
+	let newNoteObj = {
+		title: titleValue,
+		img: impValue,
+		desc: descValue,
+	}
+	inputTitle.value = ''
+	inputImg.value = ''
+	inputDesc.value = ''
+
+	notesArr.push(newNoteObj)
+
+	render(notesArr)
+}
+
+inputWrapper.append(titlePanel, inputTitle, inputImg, inputDesc, addBtn)
 boxInput.append(inputWrapper)
 
 // Создание карточки
@@ -86,18 +106,15 @@ function getList() {
 	return ul
 }
 
-let list = getList()
+let list = getList() //положить карточку в ul
 
-let card = {
-	title: 'Title',
-	img: 'https://www.zastavki.com/pictures/1920x1080/2018Animals___Cats_Large_gray_cat_with_a_surprised_look_123712_23.jpg',
-	desc: 'Description',
+// Рендер
+function render(arrNotes) {
+	for (let i = 0; i < arrNotes.length; i++) {
+		let newCard = getCard(arrNotes[i])
+		list.append(newCard)
+	}
 }
-
-let newCard = getCard(card)
-let newCard2 = getCard(card)
-
-list.append()
 
 // Вывод в HTML
 document.body.append(boxInput, list)

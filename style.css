@@ -11,6 +11,7 @@ body {
 	border: 2px solid black;
 	border-radius: 15px;
 	box-shadow: -3px 4px 20px 5px rgba(0, 0, 0, 0.5);
+	margin-bottom: 15px;
 }
 
 .input-wrapper {
@@ -81,7 +82,7 @@ body {
 	display: grid;
 	gap: 15px;
 
-	width: 320px;
+	width: 340px;
 	background-color: lightgray;
 	padding: 15px;
 
