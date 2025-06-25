@@ -91,10 +91,6 @@ body {
 	background-color: red;
 }
 
-.error-open {
-	display: block;
-}
-
 /* Карточки заметок */
 .list {
 	display: flex;

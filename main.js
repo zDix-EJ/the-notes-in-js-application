@@ -61,22 +61,22 @@ let addBtn = getAddBtn('Добавить заметку')
 addBtn.onclick = function () {
 	// Беру значения
 	let titleValue = inputTitle.value
-	let impValue = inputImg.value
+	let imgValue = inputImg.value
 	let descValue = inputDesc.value
 
 	// Валидация - заголовок
 	function checkTitle() {
 		if (titleValue === '') {
-			spanErrorTitle.classList.add('error-open')
+			spanErrorTitle.style.display = 'block'
 			return true
 		} else {
-			spanErrorTitle.classList.remove('error-open')
+			spanErrorTitle.style.display = 'none'
 			return false
 		}
 	}
 	// Валидация - ссылки
 	function checkImg() {
-		if (impValue === '') {
+		if (imgValue === '') {
 			spanErrorImg.style.display = 'block'
 			return true
 		} else {
@@ -108,7 +108,7 @@ addBtn.onclick = function () {
 
 	let newNoteObj = {
 		title: titleValue,
-		img: impValue,
+		img: imgValue,
 		desc: descValue,
 		done: false,
 	}
