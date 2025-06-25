@@ -1,5 +1,18 @@
 // Массив данных
-let notesArr = []
+let notesArr = [
+	{
+		title: 'Британская кошка',
+		img: 'https://жизньпитомца.рф/upload/iblock/f36/f36cc496802e10056b9bee7fa6114464.jpg',
+		desc: 'Современные британские короткошерстные кошки – это хорошо сложенные животные от среднего до крупного размера с мощным телом, коренастыми ногами и крепкими округлыми лапами. Вес взрослого животного колеблется от 3 до 7 кг, коты крупнее кошек. Круглую голову венчают широко поставленные уши средних размеров. А мордочка с полными щечками и большими круглыми распахнутыми глазами никого не оставит равнодушным.',
+		done: false,
+	},
+	{
+		title: 'Русская голубая кошка',
+		img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Jasmina.JPG/1280px-Jasmina.JPG',
+		desc: 'Русские голубые кошки отличаются своим изяществом и благородством внешнего вида, их мягкая короткая шерсть голубого цвета с серебристым отливом оригинально сочетается с необыкновенными зелеными глазами. Кошки имеют прекрасный прямой профиль, форма мордочки клиновидная, череп плоский и длинный, специалистами не приветствуется круглая четырехугольная форма головы.',
+		done: true,
+	},
+]
 
 // Панель создания заметки
 let boxInput = document.createElement('div')
@@ -147,6 +160,10 @@ function getCard(card, index) {
 	let cardRemoveBtn = document.createElement('button')
 	let cardImportantBtn = document.createElement('button')
 
+	if (card.done === true) {
+		cardElement.classList.add('card-important')
+	}
+
 	cardElement.classList.add('card')
 	cardImg.classList.add('card__img')
 	cardTitle.classList.add('card__title')
@@ -206,6 +223,6 @@ function render(arrNotes) {
 		list.append(newCard)
 	}
 }
-
+render(notesArr)
 // Вывод в HTML
 document.body.append(boxInput, list)
