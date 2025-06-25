@@ -1,3 +1,4 @@
+// Массив данных
 let notesArr = []
 
 // Панель создания заметки
@@ -11,20 +12,35 @@ let titlePanel = document.createElement('h1')
 titlePanel.textContent = 'Новая заметка'
 titlePanel.classList.add('title-panel')
 
+// Тема
 let inputTitle = document.createElement('input')
 inputTitle.placeholder = 'Тема'
 inputTitle.type = 'text'
 inputTitle.classList.add('input-panel')
+// Валидация
+let spanErrorTitle = document.createElement('span')
+spanErrorTitle.textContent = 'Поле не может быть пустым.'
+spanErrorTitle.classList.add('error')
 
+// Картинка
 let inputImg = document.createElement('input')
 inputImg.placeholder = 'Вставьте ссылку на понравившуюся картинку'
 inputImg.type = 'url'
 inputImg.classList.add('input-panel')
+// Валидация
+let spanErrorImg = document.createElement('span')
+spanErrorImg.textContent = 'Добавьте картинку.'
+spanErrorImg.classList.add('error')
 
+// Основной текст
 let inputDesc = document.createElement('textarea')
 inputDesc.placeholder = 'Ваш текст...'
 inputDesc.type = 'text'
 inputDesc.classList.add('textarea-panel')
+// Валидация
+let spanErrorDesc = document.createElement('span')
+spanErrorDesc.textContent = 'Поле не может быть пустым.'
+spanErrorDesc.classList.add('error')
 
 // Автоматическое расширение для текста заметки
 inputDesc.addEventListener('input', () => {
@@ -32,7 +48,7 @@ inputDesc.addEventListener('input', () => {
 	inputDesc.style.height = inputDesc.scrollHeight + 'px' // установка высоты по содержимому
 })
 
-// Создание кнопки
+// Создание кнопки добавления
 function getAddBtn(text) {
 	let buttonAdd = document.createElement('button')
 	buttonAdd.textContent = text
@@ -43,9 +59,52 @@ function getAddBtn(text) {
 
 let addBtn = getAddBtn('Добавить заметку')
 addBtn.onclick = function () {
+	// Беру значения
 	let titleValue = inputTitle.value
 	let impValue = inputImg.value
 	let descValue = inputDesc.value
+
+	// Валидация - заголовок
+	function checkTitle() {
+		if (titleValue === '') {
+			spanErrorTitle.classList.add('error-open')
+			return true
+		} else {
+			spanErrorTitle.classList.remove('error-open')
+			return false
+		}
+	}
+	// Валидация - ссылки
+	function checkImg() {
+		if (impValue === '') {
+			spanErrorImg.style.display = 'block'
+			return true
+		} else {
+			spanErrorImg.style.display = 'none'
+			return false
+		}
+	}
+
+	// Валидация - текста
+	function checkDesc() {
+		if (descValue === '') {
+			spanErrorDesc.style.display = 'block'
+			return true
+		} else {
+			spanErrorDesc.style.display = 'none'
+			return false
+		}
+	}
+
+	// Проверка полей
+	let errorTitle = checkTitle()
+	let errorImg = checkImg()
+	let errorDesc = checkDesc()
+
+	// Если есть хоть одна ошибка — не добавляем заметку
+	if (errorTitle || errorImg || errorDesc) {
+		return
+	}
 
 	let newNoteObj = {
 		title: titleValue,
@@ -53,16 +112,27 @@ addBtn.onclick = function () {
 		desc: descValue,
 		done: false,
 	}
-	inputTitle.value = ''
-	inputImg.value = ''
-	inputDesc.value = ''
 
 	notesArr.push(newNoteObj)
 
 	render(notesArr)
+
+	// Очистка
+	inputTitle.value = ''
+	inputImg.value = ''
+	inputDesc.value = ''
 }
 
-inputWrapper.append(titlePanel, inputTitle, inputImg, inputDesc, addBtn)
+inputWrapper.append(
+	titlePanel,
+	inputTitle,
+	spanErrorTitle,
+	inputImg,
+	spanErrorImg,
+	inputDesc,
+	spanErrorDesc,
+	addBtn
+)
 boxInput.append(inputWrapper)
 
 // Создание карточки
