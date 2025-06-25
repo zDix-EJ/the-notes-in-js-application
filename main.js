@@ -65,7 +65,7 @@ inputWrapper.append(titlePanel, inputTitle, inputImg, inputDesc, addBtn)
 boxInput.append(inputWrapper)
 
 // Создание карточки
-function getCard(card) {
+function getCard(card, index) {
 	let cardElement = document.createElement('li')
 	let cardImg = document.createElement('img')
 
@@ -92,6 +92,13 @@ function getCard(card) {
 	cardRemoveBtn.textContent = 'Удалить'
 	cardImportantBtn.textContent = 'Важное'
 
+	// Кнопка удаления
+	cardRemoveBtn.onclick = function () {
+		notesArr.splice(index, 1)
+		render(arrNotes)
+	}
+	// Кнопка важное
+
 	cardWrapperBtn.append(cardImportantBtn, cardRemoveBtn)
 
 	cardElement.append(cardImg, cardTitle, cardDesc, cardWrapperBtn)
@@ -110,8 +117,9 @@ let list = getList() //положить карточку в ul
 
 // Рендер
 function render(arrNotes) {
+	list.innerHTML = ''
 	for (let i = 0; i < arrNotes.length; i++) {
-		let newCard = getCard(arrNotes[i])
+		let newCard = getCard(arrNotes[i], i)
 		list.append(newCard)
 	}
 }
