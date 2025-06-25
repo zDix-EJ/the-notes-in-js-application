@@ -129,9 +129,11 @@ body {
 }
 
 /* Кнопки на карточках */
+/* Кнопка "важное" */
 .card__btn {
 	border: 1px solid black;
-	border-radius: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
 
 	padding: 10px 20px;
 	background-color: rgb(227, 204, 161);
@@ -145,9 +147,27 @@ body {
 	background-color: rgb(180, 161, 127);
 }
 
+/* Кнопка "изменить" */
+.card__edit {
+	border: 1px solid black;
+
+	padding: 10px 20px;
+	background-color: rgb(227, 204, 161);
+}
+
+.card__edit:hover {
+	background-color: rgb(205, 183, 146);
+}
+
+.card__edit:active {
+	background-color: rgb(180, 161, 127);
+}
+
+/* Кнопка "удалить" */
 .card__remove {
 	border: 1px solid black;
-	border-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 
 	padding: 10px 20px;
 	background-color: rgb(227, 204, 161);

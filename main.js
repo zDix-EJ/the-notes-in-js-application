@@ -1,4 +1,4 @@
-// Массив данных
+// Массив данных + два для наглядного примера
 let notesArr = [
 	{
 		title: 'Британская кошка',
@@ -118,15 +118,23 @@ addBtn.onclick = function () {
 	if (errorTitle || errorImg || errorDesc) {
 		return
 	}
+	if (editIndex !== null) {
+		// Редактирование существующей заметки
+		notesArr[editIndex].title = titleValue
+		notesArr[editIndex].img = imgValue
+		notesArr[editIndex].desc = descValue
 
-	let newNoteObj = {
-		title: titleValue,
-		img: imgValue,
-		desc: descValue,
-		done: false,
+		editIndex = null
+		addBtn.textContent = 'Добавить заметку'
+	} else {
+		let newNoteObj = {
+			title: titleValue,
+			img: imgValue,
+			desc: descValue,
+			done: false,
+		}
+		notesArr.push(newNoteObj)
 	}
-
-	notesArr.push(newNoteObj)
 
 	render(notesArr)
 
@@ -159,6 +167,7 @@ function getCard(card, index) {
 	let cardWrapperBtn = document.createElement('div')
 	let cardRemoveBtn = document.createElement('button')
 	let cardImportantBtn = document.createElement('button')
+	let cardEditBtn = document.createElement('button')
 
 	if (card.done === true) {
 		cardElement.classList.add('card-important')
@@ -171,6 +180,7 @@ function getCard(card, index) {
 
 	cardWrapperBtn.classList.add('btn__wrapper')
 	cardRemoveBtn.classList.add('card__remove')
+	cardEditBtn.classList.add('card__edit')
 	cardImportantBtn.classList.add('card__btn')
 
 	cardTitle.textContent = card.title
@@ -178,13 +188,8 @@ function getCard(card, index) {
 	cardDesc.textContent = card.desc
 
 	cardRemoveBtn.textContent = 'Удалить'
+	cardEditBtn.textContent = 'Изменить'
 	cardImportantBtn.textContent = 'Важное'
-
-	// Кнопка удаления
-	cardRemoveBtn.onclick = function () {
-		notesArr.splice(index, 1)
-		render(notesArr)
-	}
 
 	// Кнопка важное
 	cardImportantBtn.onclick = function () {
@@ -199,7 +204,27 @@ function getCard(card, index) {
 		}
 	}
 
-	cardWrapperBtn.append(cardImportantBtn, cardRemoveBtn)
+	// Кнопка изменения
+	cardEditBtn.onclick = function () {
+		// Заполняем поля ввода данными выбранной заметки
+		inputTitle.value = card.title
+		inputImg.value = card.img
+		inputDesc.value = card.desc
+
+		// Сохраняем индекс редактируемой заметки
+		editIndex = index
+
+		// Меняем текст кнопки на "Сохранить изменения"
+		addBtn.textContent = 'Сохранить изменения'
+	}
+
+	// Кнопка удаления
+	cardRemoveBtn.onclick = function () {
+		notesArr.splice(index, 1)
+		render(notesArr)
+	}
+
+	cardWrapperBtn.append(cardImportantBtn, cardEditBtn, cardRemoveBtn)
 
 	cardElement.append(cardImg, cardTitle, cardDesc, cardWrapperBtn)
 
