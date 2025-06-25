@@ -51,6 +51,7 @@ addBtn.onclick = function () {
 		title: titleValue,
 		img: impValue,
 		desc: descValue,
+		done: false,
 	}
 	inputTitle.value = ''
 	inputImg.value = ''
@@ -95,9 +96,21 @@ function getCard(card, index) {
 	// Кнопка удаления
 	cardRemoveBtn.onclick = function () {
 		notesArr.splice(index, 1)
-		render(arrNotes)
+		render(notesArr)
 	}
+
 	// Кнопка важное
+	cardImportantBtn.onclick = function () {
+		if (cardElement.classList.contains('card-important') === false) {
+			cardElement.classList.add('card-important')
+			cardImportantBtn.textContent = 'Не важное'
+			card.done = true
+		} else {
+			cardElement.classList.remove('card-important')
+			cardImportantBtn.textContent = 'Важное'
+			card.done = false
+		}
+	}
 
 	cardWrapperBtn.append(cardImportantBtn, cardRemoveBtn)
 
