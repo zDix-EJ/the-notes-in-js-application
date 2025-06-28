@@ -1,0 +1,20 @@
+@media (max-width: 790px) {
+	.list {
+		justify-content: center;
+	}
+	.card {
+		min-width: fit-content;
+	}
+	.card__btn {
+		margin-bottom: 0px;
+	}
+	.card__edit {
+		border-radius: 0;
+		margin-bottom: 0px;
+	}
+	.card__remove {
+		border-radius: 0;
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+	}
+}

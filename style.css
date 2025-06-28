@@ -1,4 +1,5 @@
-@import url(/reset.css);
+/* Отключение встроенных стилей */
+@import url(reset.css);
 
 body {
 	font-family: Arial, Helvetica, sans-serif;
@@ -26,6 +27,8 @@ body {
 }
 
 .input-panel {
+	width: 100%;
+
 	padding: 10px;
 
 	border: 1px solid rgb(155, 155, 155);
@@ -137,6 +140,7 @@ body {
 
 	padding: 10px 20px;
 	margin-bottom: 10px;
+
 	background-color: rgb(227, 204, 161);
 }
 
@@ -156,6 +160,7 @@ body {
 
 	padding: 10px 20px;
 	margin-bottom: 10px;
+
 	background-color: rgb(227, 204, 161);
 }
 
@@ -173,7 +178,7 @@ body {
 	border-radius: 5px;
 
 	padding: 10px 20px;
-	margin-bottom: 10px;
+
 	background-color: rgb(227, 204, 161);
 }
 
@@ -190,5 +195,5 @@ body {
 	flex-wrap: wrap;
 	justify-content: center;
 
-	margin-top: 10px;
+	margin: 10px 0;
 }

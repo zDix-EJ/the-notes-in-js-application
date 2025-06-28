@@ -70,6 +70,7 @@ function getAddBtn(text) {
 	return buttonAdd
 }
 
+editIndex = null
 let addBtn = getAddBtn('Добавить заметку')
 addBtn.onclick = function () {
 	// Беру значения
