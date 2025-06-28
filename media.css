@@ -18,3 +18,23 @@
 		border-bottom-right-radius: 5px;
 	}
 }
+
+@media (max-width: 430px) {
+	.list {
+		justify-content: center;
+	}
+	.card {
+		min-width: fit-content;
+	}
+	.card__btn {
+		margin-bottom: 10px;
+	}
+	.card__edit {
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		margin-bottom: 10px;
+	}
+	.card__remove {
+		border-radius: 5px;
+	}
+}
