@@ -112,6 +112,7 @@ body {
 	border: 2px solid black;
 	border-radius: 15px;
 	box-shadow: -8px 9px 20px 5px rgba(0, 0, 0, 0.5);
+	transition: background-color 0.3s;
 }
 
 .card-important {
@@ -142,6 +143,8 @@ body {
 	margin-bottom: 10px;
 
 	background-color: rgb(227, 204, 161);
+
+	transition: background-color 0.3s;
 }
 
 .card__btn:hover {
@@ -162,6 +165,8 @@ body {
 	margin-bottom: 10px;
 
 	background-color: rgb(227, 204, 161);
+
+	transition: background-color 0.3s;
 }
 
 .card__edit:hover {
@@ -180,6 +185,8 @@ body {
 	padding: 10px 20px;
 
 	background-color: rgb(227, 204, 161);
+
+	transition: background-color 0.3s;
 }
 
 .card__remove:hover {
